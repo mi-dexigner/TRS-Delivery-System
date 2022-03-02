@@ -1,0 +1,43 @@
+﻿
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Panel</title>
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <link href="~/Content/Assets/Admin/css/login.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="login">
+        @if (@TempData["Danger"] != null)
+        {
+            <div class="alert alert-danger hideMessage"><b> @TempData["Danger"]</b></div>
+
+        }
+        @using (Html.BeginForm("Index", "auth", FormMethod.Post, new { @class = "loginForm", @id = "loginForm" }))
+        {
+            <div>
+                @Html.Label("username", new { @id = "username" })
+                @Html.TextBox("username", null, new { @class = "username", @placeholder = "Enter Username" })
+            </div>
+
+            <div>
+                @Html.Label("password", new { @id = "password" })
+                @Html.Password("password", null, new { @class = "password", @placeholder = "Enter Password" })
+            </div>
+
+            <div>
+                <button type="submit" class="btn btn-primary btn-block btn-large">LogIn.</button>
+            </div>
+
+        }
+
+    </div>
+</body>
+</html>

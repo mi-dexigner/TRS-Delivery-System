@@ -1,0 +1,81 @@
+﻿@model IEnumerable<OnlinePostOffice.Models.tbl_users>
+
+@{
+    ViewBag.Title = "All Users";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+<div class="card">
+    <div class="card-header page-header">
+        <h3>All Users</h3>
+        <a href="@Url.Action("Create","Users")" class="btn-outline">Add New</a>
+    </div>
+    <div class="card-body">
+        @if (@TempData["Success"] != null)
+        {
+            <div class="alert alert-success hideMessage"><b> @TempData["Success"]</b></div>
+
+        }
+        @if (@TempData["Danger"] != null)
+        {
+            <div class="alert alert-success hideMessage"><b> @TempData["Danger"]</b></div>
+
+        }
+        <table>
+            <thead>
+                <tr>
+                    <td>Username</td>
+                    <td>Name</td>
+                    <td>Email</td>
+                    <td>Role</td>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <td>Username</td>
+                    <td>Name</td>
+                    <td>Email</td>
+                    <td>Role</td>
+                </tr>
+            </tfoot>
+            <tbody>
+                @if (Model != null && Model.Count() > 0)
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="username">
+                                <div>
+                                    <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="1" width="32" height="32">
+                                    <div>
+                                        <strong>@item.username</strong>
+                                        <div class="row-actions">
+                                            @if(Convert.ToInt32(Session["id"]).Equals(item.id))
+                                            {
+                                            <span class="edit">@Html.ActionLink("Edit", "Edit", new { id = item.id }) | </span>
+                                            }
+                                            <span class="view"> <a href="">View</a> | </span>
+                                            @if (Session["role"].ToString().Equals("administrator"))
+                                            {
+                                                <span class="delete">@Html.ActionLink("Delete", "Delete", new { id = item.id })</span>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </td>
+                            <td>@item.full_name</td>
+                            <td>@item.email</td>
+                            <td>@item.role</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                <td colspan="4"><div class="alert alert-danger"><b>No Data Available. Please Add Data By Click On Add New Button</b></div></td>
+            }
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>

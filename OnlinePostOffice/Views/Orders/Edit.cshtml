@@ -1,0 +1,161 @@
+﻿@model OnlinePostOffice.Models.tbl_orders
+
+@{
+    ViewBag.Title = "Edit Order";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    var getServices = (IEnumerable<OnlinePostOffice.Models.tbl_services>)ViewBag.services;
+}
+
+<div class="card">
+    <div class="card-header page-header column">
+        <h3>Edit Order </h3>
+    </div>
+
+    <div class="card-body">
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            // session user id
+            @Html.Hidden("user_id", Session["id"]);
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            // created_at date
+            @Html.Hidden("created_at", Model.created_at);
+
+            // updated_at date
+            @Html.Hidden("updated_at", @DateTime.Now.ToString("M-d-yyyy"));
+            <div class="cards">
+                <div class="card-single box-one">
+                    <table class="form-table" role="presentation">
+                        <tr class="form-field">
+                            <th> Title</th>
+                            <td>
+                                @Html.EditorFor(model => model.title)
+                                @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr class="form-field">
+                            <th>Sender Name</th>
+                            <td>
+                                @Html.EditorFor(model => model.sender_name)
+                                @Html.ValidationMessageFor(model => model.sender_name, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+
+                        <tr class="form-field">
+                            <th>Sender Phone</th>
+                            <td>
+                                @Html.EditorFor(model => model.sender_phone)
+                                @Html.ValidationMessageFor(model => model.sender_phone, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+
+                        <tr class="form-field">
+                            <th>Sender Location</th>
+                            <td>
+                                @Html.EditorFor(model => model.sender_location)
+                                @Html.ValidationMessageFor(model => model.sender_location, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr class="form-field">
+                            <th>Sender Date</th>
+                            <td>
+                                @Html.EditorFor(model => model.date_sender)
+                                @Html.ValidationMessageFor(model => model.date_sender, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr class="form-field">
+                            <th>Services</th>
+                            <td>
+                                <select class="form-control" id="servicesDropdown" name="service_id">
+                                    <option>Please Select a Service</option>
+                                    @foreach (var service in getServices)
+                                    {
+                                        <option value="@service.id" @(service.id == Model.service_id ? "selected" : "")>@service.title</option>
+                                    }
+                                </select>
+                                @Html.ValidationMessageFor(model => model.service_id, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr class="form-field">
+                            <th>Weight</th>
+                            <td>
+                                @Html.EditorFor(model => model.weights)
+                                @Html.ValidationMessageFor(model => model.weights, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+
+                    </table>
+
+
+                </div>
+                <div class="card-single box-two">
+                    <table class="form-table" role="presentation">
+                        <tr class="form-field">
+                            <th>Consignment No</th>
+                            <td>
+                                @Html.EditorFor(model => model.tracking_number)
+                                @Html.ValidationMessageFor(model => model.tracking_number, "", new { @class = "text-danger", })
+                            </td>
+                        </tr>
+                        <tr class="form-field">
+                            <th> Receiver Name</th>
+                            <td>
+                                @Html.EditorFor(model => model.reciver_name)
+                                @Html.ValidationMessageFor(model => model.reciver_name, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+
+                        <tr class="form-field">
+                            <th> Receiver Phone</th>
+                            <td>
+                                @Html.EditorFor(model => model.reciver_phone)
+                                @Html.ValidationMessageFor(model => model.reciver_phone, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+
+                        <tr class="form-field">
+                            <th> Receiver Location</th>
+                            <td>
+                                @Html.EditorFor(model => model.reciver_location)
+                                @Html.ValidationMessageFor(model => model.reciver_location, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr class="form-field">
+                            <th> Receiver Date</th>
+                            <td>
+                                @Html.EditorFor(model => model.date_reciver)
+                                @Html.ValidationMessageFor(model => model.date_reciver, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr class="form-field">
+                            <th>Cost</th>
+                            <td>
+                                @Html.EditorFor(model => model.cost)
+                                @Html.ValidationMessageFor(model => model.cost, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr class="form-field">
+                            <th>Status</th>
+                            <td>
+                                <select class="form-control" id="statusDropdown" name="status">
+                                    <option>Please Select a Status</option>
+                                    <option value="OnProgress" @(Model.status =="OnProgress" ? "selected" : "")>OnProgress</option>
+                                    <option value="Pending" @(Model.status =="Pending" ? "selected" : "")>Pending</option>
+                                    <option value="Complete" @(Model.status =="Complete" ? "selected" : "")>Complete</option>
+
+                                </select>
+                                @Html.ValidationMessageFor(model => model.status, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+
+            </div>
+            <p class="submit"><input type="submit" name="UpdateOrder" id="updateOrder" class="btn" value="Update Order"></p>
+        }
+
+    </div>
+</div>

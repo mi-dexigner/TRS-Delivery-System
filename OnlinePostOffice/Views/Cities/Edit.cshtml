@@ -1,0 +1,51 @@
+﻿@model OnlinePostOffice.Models.tbl_cities
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<div class="card">
+    <div class="card-header page-header column">
+        <h3>Edit City </h3>
+    </div>
+
+    <div class="card-body">
+
+        @using (Html.BeginForm("Edit", "Cities", FormMethod.Post, new { @class = "editcity", @id = "editcity" }))
+        {
+            @Html.AntiForgeryToken()
+            // session user id
+            @Html.Hidden("user_id", Session["id"]);
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            // created_at date
+            @Html.Hidden("created_at", Model.created_at);
+
+            // updated_at date
+            @Html.Hidden("updated_at", @DateTime.Now.ToString("M-d-yyyy"));
+
+
+            <table class="form-table" role="presentation">
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.id)
+
+
+                <tr class="form-field">
+                    <th>
+                        @Html.Label("Title", htmlAttributes: new { @class = "" })
+                    </th>
+                    <td>
+                        @Html.EditorFor(model => model.title, new { htmlAttributes = new { @id = "title" } })
+                        @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+
+            </table>
+            <p class="submit"><input type="submit" name="updatecity" id="updatecity" class="btn" value="Update City"></p>
+
+
+        }
+    </div>
+</div>

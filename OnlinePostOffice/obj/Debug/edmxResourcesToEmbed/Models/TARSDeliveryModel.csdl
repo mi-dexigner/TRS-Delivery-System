@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TARSDeliveryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tbl_branch">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="branch_code" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="branch_name" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="phone" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="address" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="city_id" Type="Int32" />
+    <Property Name="zipcode" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+    <Property Name="user_id" Type="Int32" />
+    <Property Name="created_at" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+    <Property Name="updated_at" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tbl_cities">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="user_id" Type="Int32" />
+    <Property Name="created_at" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+    <Property Name="updated_at" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tbl_services">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="user_id" Type="Int32" />
+    <Property Name="created_at" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+    <Property Name="updated_at" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tbl_users">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="full_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="username" Type="String" MaxLength="155" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="155" FixedLength="false" Unicode="false" />
+    <Property Name="phone" Type="String" MaxLength="155" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="role" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="created_at" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+    <Property Name="updated_at" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="TARSDeliveryDbContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tbl_branch" EntityType="Self.tbl_branch" />
+    <EntitySet Name="tbl_cities" EntityType="Self.tbl_cities" />
+    <EntitySet Name="tbl_services" EntityType="Self.tbl_services" />
+    <EntitySet Name="tbl_users" EntityType="Self.tbl_users" />
+    <EntitySet Name="tbl_orders" EntityType="TARSDeliveryModel.tbl_orders" />
+  </EntityContainer>
+  <EntityType Name="tbl_orders">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="tracking_number" Type="String" MaxLength="155" FixedLength="false" Unicode="false" />
+    <Property Name="sender_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="sender_phone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="sender_location" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="service_id" Type="Int32" />
+    <Property Name="reciver_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="reciver_phone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="reciver_location" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="date_sender" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="date_reciver" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="user_id" Type="Int32" />
+    <Property Name="created_at" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+    <Property Name="updated_at" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+    <Property Name="cost" Type="Int32" />
+    <Property Name="weights" Type="Int32" />
+    <Property Name="status" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

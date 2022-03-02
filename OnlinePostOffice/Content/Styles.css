@@ -1,0 +1,10 @@
+﻿.search-popup .search-query:focus,
+.search-popup .search-query:focus-visible {
+    box-shadow: none;
+    border: 1px solid #c7c7c7;
+    outline: none
+}
+
+.search-popup .search-query {
+    border: 1px solid #c7c7c7;
+}

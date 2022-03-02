@@ -1,0 +1,25 @@
+﻿<header>
+    <h2>
+        <label for="nav-toggle">
+            <span class="las la-bars"></span>
+        </label>
+    </h2>
+    <div class="user-wrapper menu-dropdown">
+        <div>
+            <div>
+                <h4>Howdy,@Session["username"]</h4>
+                <small>@Session["role"]</small>
+            </div>
+            <img src='https://randomuser.me/api/portraits/men/1.jpg' width="30" height="30" alt="">
+        </div>
+        <div class="ab-sub-wrapper">
+            <div><img src='https://randomuser.me/api/portraits/men/1.jpg' width="48" height="48" alt=""></div>
+            <div>
+                <ul>
+                    <li>@Session["fullname"]</li>
+                    <li>@Html.ActionLink("Logout", "Logout", "Auth")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>

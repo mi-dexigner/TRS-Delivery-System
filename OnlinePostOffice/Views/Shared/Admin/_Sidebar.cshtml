@@ -1,0 +1,58 @@
+﻿<div class="sidebar">
+    <div class="sidebar-brand">
+        <h2>
+           
+            <img src="~/Content/Assets/Front/img/logo/logo-white2.png" width="34" />
+            <span style="font-size:16px;">TRS Delivery</span>
+        </h2>
+    </div>
+
+    <div class="sidebar-menu">
+        <ul>
+            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "dashboard" ? "menu-dropdown active" : "")">
+                <a href="@Url.Action("Index","dashboard")"><span class="las la-igloo"></span> <span>Dashboard</span></a>
+            </li>
+            <li class=" @(ViewContext.RouteData.Values["controller"].ToString().ToLower() == "cities" ? " active" : "") menu-dropdown">
+                <a href=" @Url.Action("Index", "Cities") "><span class="las la-shopping-bag"></span> <span>Cities</span></a>
+                <ul class="submenu">
+                    <li><a href="@Url.Action("index", "Cities") "><span>All Cities</span></a></li>
+                    <li><a href="@Url.Action("create", "Cities") "><span>Add New</span></a></li>
+                </ul>
+            </li>
+            <li class=" @(ViewContext.RouteData.Values["controller"].ToString().ToLower() == "services" ? " active" : "") menu-dropdown">
+                <a href=" @Url.Action("Index", "Services") "><span class="las la-shopping-bag"></span> <span>Services</span></a>
+                <ul class="submenu">
+                    <li><a href="@Url.Action("Index", "Services") "><span>All Services</span></a></li>
+                    <li><a href="@Url.Action("Create", "Services") "><span>Add New</span></a></li>
+                </ul>
+            </li>
+
+            <li class="@(ViewContext.RouteData.Values["controller"].ToString().ToLower() == "branch" ? " active" : "") menu-dropdown">
+                <a href=" @Url.Action("Index", "Branch") "><span class="las la-shopping-bag"></span> <span>Branches</span></a>
+                <ul class="submenu">
+                    <li><a href="@Url.Action("Index", "Branch") "><span>All Branches</span></a></li>
+                    <li><a href="@Url.Action("Create", "Branch") "><span>Add New</span></a></li>
+                </ul>
+            </li>
+          
+            <li class="@(ViewContext.RouteData.Values["controller"].ToString().ToLower() == "orders" ? " active" : "") menu-dropdown">
+                <a href=" @Url.Action("Index", "Orders") "><span class="las la-shopping-bag"></span> <span>Orders</span></a>
+                <ul class="submenu">
+                    <li><a href="@Url.Action("Index", "Orders") "><span>All Orders</span></a></li>
+                    <li><a href="@Url.Action("Create", "Orders") "><span>Add New</span></a></li>
+                </ul>
+            </li>
+
+
+            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "UserNew" ? "menu-dropdown active" : "") @(ViewContext.RouteData.Values["controller"].ToString().ToLower() == "users" ? " active" : "") menu-dropdown">
+                <a href="@Url.Action("Index","Users")"><span class="las la-user"></span> <span>Users</span></a>
+                <ul class="submenu">
+                    <li><a href="@Url.Action("Index","Users")"><span>All Users</span></a></li>
+                    <li><a href="@Url.Action("UserNew","Users")"><span>Add New</span></a></li>
+
+                </ul>
+            </li>
+          
+        </ul>
+    </div>
+</div>

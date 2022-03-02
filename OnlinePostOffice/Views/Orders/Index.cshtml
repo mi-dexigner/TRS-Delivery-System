@@ -1,0 +1,172 @@
+﻿@model IEnumerable<OnlinePostOffice.Models.tbl_orders>
+
+@{
+    ViewBag.Title = "Orders List";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    var users = (IEnumerable<OnlinePostOffice.Models.tbl_users>)ViewBag.users;
+    var services = (IEnumerable<OnlinePostOffice.Models.tbl_services>)ViewBag.services;
+}
+
+<div class="card">
+    <div class="card-header page-header">
+        <h3>All Orders</h3>
+        @Html.ActionLink("Add New", "Create", "", new { @class = "btn-outline" })
+    </div>
+  
+    <div class="card-body table-responsive">
+        @if (@TempData["Success"] != null)
+        {
+            <div class="alert alert-success hideMessage"><b> @TempData["Success"]</b></div>
+
+        }
+        @if (@TempData["Danger"] != null)
+        {
+            <div class="alert alert-success hideMessage"><b> @TempData["Danger"]</b></div>
+
+        }
+    <table class="table">
+        <thead>
+            <tr>
+                <td>&nbsp;</td>
+                <td>Title</td>
+                <td>Consignment No</td>
+                <td>
+                    Sender Name
+                </td>
+                <td>
+                    Services
+                </td>
+                <td>
+                    Receiver Name
+                </td>
+
+                <td>
+                    Date Sender
+                </td>
+                <td>
+                    Date Receiver
+                </td>
+                <td>
+                    Author
+                </td>
+                <td>
+                    Date
+                </td>
+
+
+            </tr>
+
+        </thead>
+        <tfoot>
+            <tr>
+                <td>&nbsp;</td>
+                <td>Title</td>
+                <td>Consignment No</td>
+                <td>
+                    Sender Name
+                </td>
+                <td>
+                    Services
+                </td>
+                <td>
+                    Receiver Name
+                </td>
+
+                <td>
+                    Date Sender
+                </td>
+                <td>
+                    Date Receiver
+                </td>
+                <td>
+                    Author
+                </td>
+                <td>
+                    Date
+                </td>
+
+
+            </tr>
+
+        </tfoot>
+        @if (Model != null && Model.Count() > 0)
+        {
+            int counter = 0;
+            foreach (var item in Model)
+            {
+                counter = counter + 1;
+                <tr>
+                    <td>@counter</td>
+                    <td class="username">
+                        <div>
+                            <div>
+                                <strong>@item.title.Substring(0, 1).ToUpper()@item.title.Substring(1)</strong>
+                                <div class="row-actions">
+                                    <span class="edit">@Html.ActionLink("Edit", "Edit", new { id = item.id }) | </span>
+                                    @if (Session["role"].ToString() == "administrator")
+                                    {
+                                        <span class="delete">@Html.ActionLink("Delete", "Delete", new { id = item.id })</span>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tracking_number)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.sender_name)
+                    </td>
+
+                    <td>
+                        @foreach (var service in services)
+                        {
+                            if (item.service_id == service.id)
+                            {
+                                @service.title
+                            }
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.reciver_name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.date_sender)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.date_reciver)
+                    </td>
+                    <td>
+                        @foreach (var user in users)
+                        {
+                            if (item.user_id == user.id)
+                            {
+                                @user.full_name
+                            }
+                        }
+                    </td>
+                    <td>
+                        @if (item.updated_at != null)
+                        {
+                            <span class="update_date">@Html.DisplayFor(modelItem => item.updated_at)</span>
+                        }
+                        else
+                        {
+                            <span class="created_date"> @Html.DisplayFor(modelItem => item.created_at)</span>
+                        }
+                    </td>
+
+
+                </tr>
+            }
+        }
+        else
+        {
+            <tr> <td colspan="10"><div class="alert alert-danger"><b>No Data Available. Please Add Data By Click On Add New Button</b></div></td></tr>
+        }
+
+    </table>
+
+    </div>
+
+</div>

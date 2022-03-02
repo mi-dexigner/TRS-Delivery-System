@@ -1,0 +1,279 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TARSDeliveryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbl_branch">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="branch_code" Type="varchar" MaxLength="255" />
+          <Property Name="branch_name" Type="varchar" MaxLength="120" />
+          <Property Name="email" Type="varchar" MaxLength="60" />
+          <Property Name="phone" Type="varchar" MaxLength="60" />
+          <Property Name="address" Type="varchar" MaxLength="60" />
+          <Property Name="city_id" Type="int" />
+          <Property Name="zipcode" Type="varchar" MaxLength="120" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="created_at" Type="varchar" MaxLength="120" />
+          <Property Name="updated_at" Type="varchar" MaxLength="120" />
+        </EntityType>
+        <EntityType Name="tbl_cities">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="255" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="created_at" Type="varchar" MaxLength="120" />
+          <Property Name="updated_at" Type="varchar" MaxLength="120" />
+        </EntityType>
+        <EntityType Name="tbl_orders">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="255" />
+          <Property Name="tracking_number" Type="varchar" MaxLength="155" />
+          <Property Name="sender_name" Type="varchar" MaxLength="255" />
+          <Property Name="sender_phone" Type="varchar" MaxLength="255" />
+          <Property Name="sender_location" Type="varchar" MaxLength="255" />
+          <Property Name="service_id" Type="int" />
+          <Property Name="reciver_name" Type="varchar" MaxLength="255" />
+          <Property Name="reciver_phone" Type="varchar" MaxLength="255" />
+          <Property Name="reciver_location" Type="varchar" MaxLength="255" />
+          <Property Name="date_sender" Type="varchar" MaxLength="255" />
+          <Property Name="date_reciver" Type="varchar" MaxLength="255" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="created_at" Type="varchar" MaxLength="120" />
+          <Property Name="updated_at" Type="varchar" MaxLength="120" />
+          <Property Name="cost" Type="int" />
+          <Property Name="weights" Type="int" />
+          <Property Name="status" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="tbl_services">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="255" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="created_at" Type="varchar" MaxLength="120" />
+          <Property Name="updated_at" Type="varchar" MaxLength="120" />
+        </EntityType>
+        <EntityType Name="tbl_users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="full_name" Type="varchar" MaxLength="255" />
+          <Property Name="username" Type="varchar" MaxLength="155" />
+          <Property Name="email" Type="varchar" MaxLength="155" />
+          <Property Name="phone" Type="varchar" MaxLength="155" />
+          <Property Name="password" Type="varchar" MaxLength="255" />
+          <Property Name="role" Type="varchar" MaxLength="20" />
+          <Property Name="created_at" Type="varchar" MaxLength="120" />
+          <Property Name="updated_at" Type="varchar" MaxLength="120" />
+        </EntityType>
+        <EntityContainer Name="TARSDeliveryModelStoreContainer">
+          <EntitySet Name="tbl_branch" EntityType="Self.tbl_branch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_cities" EntityType="Self.tbl_cities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_orders" EntityType="Self.tbl_orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_services" EntityType="Self.tbl_services" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_users" EntityType="Self.tbl_users" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TARSDeliveryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tbl_branch">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="branch_code" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="branch_name" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="phone" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="address" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="city_id" Type="Int32" />
+          <Property Name="zipcode" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="created_at" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+          <Property Name="updated_at" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_cities">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="created_at" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+          <Property Name="updated_at" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_services">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="created_at" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+          <Property Name="updated_at" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="full_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="username" Type="String" MaxLength="155" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="155" FixedLength="false" Unicode="false" />
+          <Property Name="phone" Type="String" MaxLength="155" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="role" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="created_at" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+          <Property Name="updated_at" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="TARSDeliveryDbContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbl_branch" EntityType="Self.tbl_branch" />
+          <EntitySet Name="tbl_cities" EntityType="Self.tbl_cities" />
+          <EntitySet Name="tbl_services" EntityType="Self.tbl_services" />
+          <EntitySet Name="tbl_users" EntityType="Self.tbl_users" />
+          <EntitySet Name="tbl_orders" EntityType="TARSDeliveryModel.tbl_orders" />
+        </EntityContainer>
+        <EntityType Name="tbl_orders">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="tracking_number" Type="String" MaxLength="155" FixedLength="false" Unicode="false" />
+          <Property Name="sender_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="sender_phone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="sender_location" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="service_id" Type="Int32" />
+          <Property Name="reciver_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="reciver_phone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="reciver_location" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="date_sender" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="date_reciver" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="created_at" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+          <Property Name="updated_at" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+          <Property Name="cost" Type="Int32" />
+          <Property Name="weights" Type="Int32" />
+          <Property Name="status" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TARSDeliveryModelStoreContainer" CdmEntityContainer="TARSDeliveryDbContext">
+          <EntitySetMapping Name="tbl_branch">
+            <EntityTypeMapping TypeName="TARSDeliveryModel.tbl_branch">
+              <MappingFragment StoreEntitySet="tbl_branch">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="branch_code" ColumnName="branch_code" />
+                <ScalarProperty Name="branch_name" ColumnName="branch_name" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="city_id" ColumnName="city_id" />
+                <ScalarProperty Name="zipcode" ColumnName="zipcode" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_cities">
+            <EntityTypeMapping TypeName="TARSDeliveryModel.tbl_cities">
+              <MappingFragment StoreEntitySet="tbl_cities">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_services">
+            <EntityTypeMapping TypeName="TARSDeliveryModel.tbl_services">
+              <MappingFragment StoreEntitySet="tbl_services">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_users">
+            <EntityTypeMapping TypeName="TARSDeliveryModel.tbl_users">
+              <MappingFragment StoreEntitySet="tbl_users">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="full_name" ColumnName="full_name" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_orders">
+            <EntityTypeMapping TypeName="TARSDeliveryModel.tbl_orders">
+              <MappingFragment StoreEntitySet="tbl_orders">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="weights" ColumnName="weights" />
+                <ScalarProperty Name="cost" ColumnName="cost" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="date_reciver" ColumnName="date_reciver" />
+                <ScalarProperty Name="date_sender" ColumnName="date_sender" />
+                <ScalarProperty Name="reciver_location" ColumnName="reciver_location" />
+                <ScalarProperty Name="reciver_phone" ColumnName="reciver_phone" />
+                <ScalarProperty Name="reciver_name" ColumnName="reciver_name" />
+                <ScalarProperty Name="service_id" ColumnName="service_id" />
+                <ScalarProperty Name="sender_location" ColumnName="sender_location" />
+                <ScalarProperty Name="sender_phone" ColumnName="sender_phone" />
+                <ScalarProperty Name="sender_name" ColumnName="sender_name" />
+                <ScalarProperty Name="tracking_number" ColumnName="tracking_number" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

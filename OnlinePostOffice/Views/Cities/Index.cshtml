@@ -1,0 +1,116 @@
+﻿@model IEnumerable<OnlinePostOffice.Models.tbl_cities>
+
+
+    @{
+        ViewBag.Title = "All Cities";
+        Layout = "~/Views/Shared/_Admin.cshtml";
+        var users = (IEnumerable<OnlinePostOffice.Models.tbl_users>)ViewBag.users;
+    }
+
+    <div class="card">
+        <div class="card-header page-header">
+            <h3>All Cities</h3>
+            @Html.ActionLink("Add New", "Create", "", new { @class = "btn-outline" })
+        </div>
+
+
+        <div class="card-body">
+            @if (@TempData["Success"] != null)
+            {
+                <div class="alert alert-success hideMessage"><b> @TempData["Success"]</b></div>
+
+            }
+            @if (@TempData["Danger"] != null)
+            {
+                <div class="alert alert-success hideMessage"><b> @TempData["Danger"]</b></div>
+
+            }
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>
+                            Name
+                        </td>
+                        <td>
+                            Author
+                        </td>
+                        <td>
+                            Date
+                        </td>
+
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>
+                            Name
+                        </td>
+                        <td>
+                            Author
+                        </td>
+                        <td>
+                            Date
+                        </td>
+
+                    </tr>
+                </tfoot>
+                @if (Model != null && Model.Count() > 0)
+                {
+                    int counter = 0;
+                    foreach (var item in Model)
+                    {
+                        counter = counter + 1;
+                        <tr>
+                            <td>@counter</td>
+                            <td class="username">
+                                <div>
+                                    <div>
+                                        <strong>@item.title.Substring(0, 1).ToUpper()@item.title.Substring(1)</strong>
+                                        <div class="row-actions">
+                                            <span class="edit">@Html.ActionLink("Edit", "Edit", new { id = item.id }) | </span>
+                                            @if (Session["role"].ToString() == "administrator")
+                                            {
+                                                <span class="delete">@Html.ActionLink("Delete", "Delete", new { id = item.id })</span>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                @foreach (var user in users)
+                                {
+                                    if (item.user_id == user.id)
+                                    {
+                                        @user.full_name
+                                    }
+                                }
+
+                            </td>
+
+                            <td>
+
+                                @if (item.updated_at != null)
+                                {
+                                    <span class="update_date">@Html.DisplayFor(modelItem => item.updated_at)</span>
+                                }
+                                else
+                                {
+                                    <span class="created_date"> @Html.DisplayFor(modelItem => item.created_at)</span>
+                                }
+
+
+                            </td>
+
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr> <td colspan="4"><div class="alert alert-danger"><b>No Data Available. Please Add Data By Click On Add New Button</b></div></td></tr>
+                }
+
+            </table>
+        </div>
+    </div>

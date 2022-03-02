@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<!-- // being cards -->
+@if (@TempData["Success"] != null)
+{
+    <div class="alert alert-success hideMessage"><b> @TempData["Success"]</b></div>
+}
+
+

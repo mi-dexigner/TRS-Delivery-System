@@ -1,0 +1,176 @@
+﻿@model IEnumerable<OnlinePostOffice.Models.tbl_branch>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    var users = (IEnumerable<OnlinePostOffice.Models.tbl_users>)ViewBag.users;
+    var getCities = (IEnumerable<OnlinePostOffice.Models.tbl_cities>)ViewBag.CityList;
+
+}
+
+<div class="card">
+    <div class="card-header page-header">
+        <h3>All Branches</h3>
+        @Html.ActionLink("Add New", "Create", "", new { @class = "btn-outline" })
+    </div>
+    <div class="card-body">
+        @if (@TempData["Success"] != null)
+        {
+            <div class="alert alert-success hideMessage"><b> @TempData["Success"]</b></div>
+
+        }
+        @if (@TempData["Danger"] != null)
+        {
+            <div class="alert alert-success hideMessage"><b> @TempData["Danger"]</b></div>
+
+        }
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>
+                        Branch Name
+                    </td>
+                    <td>
+                        Branch Code
+                    </td>
+                    <td>
+                        Email
+                    </td>
+                    <td>
+                        Phone
+                    </td>
+                    <td>
+                        Address
+                    </td>
+                    <td>
+                        City
+                    </td>
+                    <td>
+                        Zip Code
+                    </td>
+                    <td>
+                        Author
+                    </td>
+
+                    <td>Date</td>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>
+                        Branch Name
+                    </td>
+                    <td>
+                        Branch Code
+                    </td>
+                    <td>
+                        Email
+                    </td>
+                    <td>
+                        Phone
+                    </td>
+                    <td>
+                        Address
+                    </td>
+                    <td>
+                        City
+                    </td>
+                    <td>
+                        Zip Code
+                    </td>
+                    <td>
+                        Author
+                    </td>
+                    <td>Date</td>
+
+
+                </tr>
+            </tfoot>
+
+            @if (Model != null && Model.Count() > 0)
+            {
+                int counter = 0;
+                foreach (var item in Model)
+                {
+                    counter = counter + 1;
+
+                    <tr>
+                        <td>@counter</td>
+                        <td class="username">
+                            <div>
+                                <div>
+                                    <strong>@item.branch_name.Substring(0, 1).ToUpper()@item.branch_name.Substring(1)</strong>
+                                    <div class="row-actions">
+                                        <span class="edit">@Html.ActionLink("Edit", "Edit", new { id = item.id }) | </span>
+                                        @if (Session["role"].ToString() == "administrator")
+                                        {
+                                            <span class="delete">@Html.ActionLink("Delete", "Delete", new { id = item.id })</span>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.branch_code)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.phone)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.address)
+                        </td>
+
+                        <td>
+                            @foreach (var city in getCities)
+                            {
+                                if (item.city_id == city.id)
+                                {
+                                    @city.title
+                                }
+                            }
+
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.zipcode)
+                        </td>
+                        <td>
+                            @foreach (var user in users)
+                            {
+                                if (item.user_id == user.id)
+                                {
+                                    @user.full_name
+                                }
+                            }
+
+
+                        </td>
+                        <td>
+                            @if (item.updated_at != null)
+                            {
+                                <span class="update_date">@Html.DisplayFor(modelItem => item.updated_at)</span>
+                            }
+                            else
+                            {
+                                <span class="created_date"> @Html.DisplayFor(modelItem => item.created_at)</span>
+                            }
+                        </td>
+
+
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr><td colspan="10"><div class="alert alert-danger"><b>No Data Available. Please Add Data By Click On Add New Button</b></div></td></tr>
+            }
+
+        </table>
+
+    </div>
+</div>

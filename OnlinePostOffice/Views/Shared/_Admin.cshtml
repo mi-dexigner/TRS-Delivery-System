@@ -1,0 +1,33 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Admin</title>
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <link href="~/Content/Assets/Admin/css/style.css" rel="stylesheet" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div id="miwrap">
+        <input type="checkbox" id="nav-toggle">
+        @Html.Partial("Admin/_Sidebar")
+        <div class="main-content">
+            @Html.Partial("Admin/_Header")
+
+            <main>
+                @RenderBody()
+
+            </main>
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="~/Content/Assets/Admin/js/admin.js"></script>
+    <script src="https://cdn.tiny.cloud/1/59v2gzvklvnmf87epy00b0yvdas2zaqgoyoiz2ugh551ml4c/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+   
+</body>
+</html>
+
